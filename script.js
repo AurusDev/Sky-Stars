@@ -68,6 +68,33 @@ const constellations = [
             { id: "s6", x: 2050, y: 3000, name: "Shaula", dist: "570 ly", mag: "1.62", desc: "Localizada no ferrão, é a segunda estrela mais brilhante da constelação." }
         ],
         links: [["s2", "s1"], ["s1", "s6"]]
+
+    }, {
+        name: "Touro",
+        stars: [
+            { id: "t1", x: 1000, y: 1300, name: "Aldebaran", color: "orange", dist: "65 ly", mag: "0.85", desc: "O 'olho' do Touro. Uma gigante laranja que é a estrela mais brilhante da constelação." },
+            { id: "t2", x: 850, y: 1200, name: "Elnath", dist: "130 ly", mag: "1.65", desc: "Localizada na ponta de um dos chifres, faz fronteira com a constelação de Cocheiro." },
+            { id: "t3", x: 800, y: 1400, name: "Zeta Tauri", dist: "417 ly", mag: "2.97", desc: "Uma estrela binária massiva que marca a ponta do outro chifre." }
+        ],
+        links: [["t1", "t2"], ["t1", "t3"]]
+    },
+    {
+        name: "Cisne",
+        stars: [
+            { id: "cy1", x: 2800, y: 2500, name: "Deneb", dist: "2600 ly", mag: "1.25", desc: "Uma das maiores e mais distantes estrelas visíveis a olho nu, marcando a cauda do cisne." },
+            { id: "cy2", x: 3000, y: 2700, name: "Sadr", dist: "1500 ly", mag: "2.23", desc: "Localizada no centro da 'Cruz do Norte', onde as asas e o corpo se cruzam." },
+            { id: "cy3", x: 3200, y: 2900, name: "Albireo", color: "orange", dist: "430 ly", mag: "3.05", desc: "Uma das estrelas duplas mais bonitas do céu, com cores azul e dourada contrastantes." }
+        ],
+        links: [["cy1", "cy2"], ["cy2", "cy3"]]
+    },
+    {
+        name: "Andrômeda",
+        stars: [
+            { id: "a1", x: 3500, y: 800, name: "Alpheratz", dist: "97 ly", mag: "2.06", desc: "Conecta a constelação de Andrômeda ao Grande Quadrado de Pégaso." },
+            { id: "a2", x: 3700, y: 1000, name: "Mirach", color: "orange", dist: "200 ly", mag: "2.07", desc: "Uma gigante vermelha fria usada frequentemente para localizar a Galáxia de Andrômeda." },
+            { id: "a3", x: 3900, y: 1200, name: "Almach", dist: "350 ly", mag: "2.10", desc: "Uma estrela múltipla impressionante que marca o 'pé' de Andrômeda." }
+        ],
+        links: [["a1", "a2"], ["a2", "a3"]]
     }
 ];
 
@@ -80,6 +107,12 @@ function initMap() {
             starCoords[s.id] = { x: s.x, y: s.y };
 
             const container = document.createElement('div');
+            const label = document.createElement('div');
+            label.className = 'constellation-label';
+            label.innerText = con.name;
+            label.style.left = `${con.stars[0].x + 50}px`;
+            label.style.top = `${con.stars[0].y - 30}px`;
+            sky.appendChild(label);
             container.className = 'star-container';
             container.style.left = `${s.x}px`;
             container.style.top = `${s.y}px`;
