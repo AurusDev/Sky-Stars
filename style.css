@@ -1,0 +1,230 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #05070a;
+    font-family: 'Segoe UI', Tahoma, sans-serif;
+    color: white;
+}
+
+.toolbar {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(20, 20, 25, 0.8);
+    backdrop-filter: blur(12px);
+    padding: 8px;
+    border-radius: 14px;
+    display: flex;
+    gap: 8px;
+    z-index: 1000;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: transparent;
+    border: none;
+    color: #888;
+    padding: 10px 16px;
+    cursor: pointer;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+.tool-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2px;
+    /* Espessura do traço do ícone */
+}
+
+.tool-btn.active svg {
+    color: white;
+}
+
+.tool-btn.active {
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.viewport {
+    width: 100vw;
+    height: 100vh;
+    background: #05070a;
+}
+
+.viewport.hand-mode {
+    cursor: grab;
+}
+
+.viewport.hand-mode:active {
+    cursor: grabbing;
+}
+
+.sky {
+    width: 4000px;
+    height: 4000px;
+    background: radial-gradient(circle at center, #10182b 0%, #05070a 100%);
+    position: relative;
+    transition: transform 0.1s ease-out;
+    /* Suaviza o arrasto */
+}
+
+/* Estrelas de Fundo (Pequenas) */
+.bg-star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Estrelas das Constelações (Principais) */
+.star-container {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    z-index: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.star {
+    width: 18px;
+    height: 18px;
+    background: white;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.8));
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.star.orange {
+    background: #ffaa33;
+    filter: drop-shadow(0 0 10px #ffaa33);
+}
+
+.star-container:hover .star {
+    transform: scale(1.8) rotate(20deg);
+}
+
+/* Linhas Conectoras */
+.line {
+    position: absolute;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.15);
+    border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+    transform-origin: 0 50%;
+    z-index: 50;
+    pointer-events: none;
+}
+
+/* Tooltips */
+.tooltip {
+    position: absolute;
+    bottom: 30px;
+    background: rgba(0, 0, 0, 0.9);
+    border: 1px solid #3b82f6;
+    padding: 8px 12px;
+    border-radius: 8px;
+    display: none;
+    white-space: nowrap;
+    pointer-events: none;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.tooltip h3 {
+    margin: 0;
+    font-size: 14px;
+    color: #3b82f6;
+}
+
+.tooltip p {
+    margin: 2px 0 0;
+    font-size: 11px;
+    opacity: 0.7;
+}
+
+.star-container:hover .tooltip {
+    display: block;
+}
+
+.info-card {
+    position: fixed;
+    right: -350px;
+    /* Escondido inicialmente */
+    top: 80px;
+    width: 300px;
+    background: rgba(10, 15, 25, 0.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 20px 0 0 20px;
+    padding: 24px;
+    z-index: 2000;
+    transition: right 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.info-card.active {
+    right: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #666;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+}
+
+.info-card h2 {
+    margin: 0 0 8px 0;
+    color: #fff;
+    font-size: 24px;
+}
+
+.tag {
+    background: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin: 25px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+}
+
+.stat-item label {
+    display: block;
+    font-size: 11px;
+    color: #888;
+    text-transform: uppercase;
+}
+
+.stat-item p {
+    margin: 5px 0 0 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #eee;
+}
+
+.description {
+    line-height: 1.6;
+    color: #bbb;
+    font-size: 14px;
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <script src="https://unpkg.com/feather-icons"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Stars</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <nav class="toolbar">
+        <button id="btn-hand" class="tool-btn active">
+            <i data-feather="move"></i> Mover
+        </button>
+
+
+        <button id="btn-select" class="tool-btn">
+            <i data-feather="mouse-pointer"></i> Selecionar
+        </button>
+    </nav>
+
+    <div class="viewport" id="viewport">
+        <div class="sky" id="sky">
+            <div id="lines-layer"></div>
+            <div id="stars-layer"></div>
+        </div>
+        <div id="info-card" class="info-card">
+            <button id="close-card" class="close-btn"><i data-feather="x"></i></button>
+            <div class="card-content">
+                <h2 id="star-name">Nome da Estrela</h2>
+                <span id="constellation-tag" class="tag">Constelação</span>
+
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <label>Distância</label>
+                        <p id="star-dist">-- ly</p>
+                    </div>
+                    <div class="stat-item">
+                        <label>Magnitude</label>
+                        <p id="star-mag">--</p>
+                    </div>
+                </div>
+
+                <p id="star-desc" class="description">
+                    Selecione uma estrela para ver detalhes sobre sua composição e história.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></scripts>
+</body>
+
+</html>
